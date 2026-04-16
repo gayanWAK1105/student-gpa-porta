@@ -4,13 +4,7 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 
 // Your Firebase configuration
 const firebaseConfig = {
-      apiKey: "AIzaSyCm8w4DIYUux6LfM5tXIm5_ugIBrIWLipw",
-  authDomain: "test-4bc36.firebaseapp.com",
-  projectId: "test-4bc36",
-  storageBucket: "test-4bc36.firebasestorage.app",
-  messagingSenderId: "622818653268",
-  appId: "1:622818653268:web:1543e3a533154f281869c1",
-  measurementId: "G-8RPRBZ8PXQ"
+ //Add your config
 };
 
 const app = initializeApp(firebaseConfig);
