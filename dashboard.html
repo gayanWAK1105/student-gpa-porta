@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal | Main Page</title>
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+    <nav style="background: #764ba2; padding: 1rem; color: white; display: flex; justify-content: space-between;">
+        <h2>Student Information System</h2>
+        <button id="logoutBtn" style="background: white; color: #764ba2; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer;">Logout</button>
+    </nav>
+
+    <main style="padding: 2rem; max-width: 800px; margin: auto;">
+        <h1>Welcome, <span id="userDisplay">Student</span></h1>
+        <div class="info-card" style="background: white; padding: 20px; border-radius: 8px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h3>Your Academic Profile</h3>
+            <hr style="margin: 10px 0;">
+            <p><strong>Status:</strong> Active</p>
+            <p><strong>Enrolled Courses:</strong> Computer Science, Mathematics, Physics</p>
+        </div>
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = { /* YOUR CONFIG HERE */ };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // SECURITY CHECK: Is the user logged in?
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in
+                document.getElementById('userDisplay').innerText = user.email;
+            } else {
+                // No user is signed in, send them back to login
+                window.location.href = "index.html";
+            }
+        });
+
+        // LOGOUT LOGIC
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = "index.html";
+            });
+        });
+    </script>
+</body>
+</html>
